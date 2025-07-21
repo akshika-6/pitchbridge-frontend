@@ -59,6 +59,17 @@
 // export default App;
 
 
+
+import Settings from './pages/Settings';
+import ChangePassword from './pages/settings/ChangePassword';
+import ChangeEmail from './pages/settings/ChangeEmail';
+import ChangeUsername from './pages/settings/ChangeUsername';
+import UpdateProfilePicture from './pages/settings/UpdateProfilePicture';
+import NotificationSettings from './pages/settings/NotificationSettings';
+import PrivacySettings from './pages/settings/PrivacySettings';
+import DeleteAccount from './pages/settings/DeleteAccount';
+
+
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -82,7 +93,6 @@ import AdminActivity from './pages/admin/Activity';
 import InvestorDeck from './pages/InvestorDeck';
 import Messages from './pages/Messages';
 import Profile from './pages/Profile';
-import Settings from './pages/Settings';
 import FAQ from './pages/FAQ';
 import Contact from './pages/Contact';
 import Logout from './pages/Logout';
@@ -127,6 +137,13 @@ const App = () => {
         {/* 🔧 Admin Routes */}
         <Route path="/admin/users" element={user ? <AdminUsers user={user} /> : <Navigate to="/login" />} />
         <Route path="/admin/activity" element={user ? <AdminActivity user={user} /> : <Navigate to="/login" />} />
+<Route path="/settings/username" element={<ChangeUsername />} />
+<Route path="/settings/email" element={<ChangeEmail />} />
+<Route path="/settings/password" element={<ChangePassword />} />
+<Route path="/settings/profile-picture" element={<UpdateProfilePicture />} />
+<Route path="/settings/notifications" element={<NotificationSettings />} />
+<Route path="/settings/privacy" element={<PrivacySettings />} />
+<Route path="/settings/delete" element={<DeleteAccount />} />
       </Routes>
     </Router>
   );

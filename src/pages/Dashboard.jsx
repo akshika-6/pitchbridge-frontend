@@ -553,6 +553,14 @@ const Dashboard = () => {
       <main className="ml-60 p-8 w-full bg-[#f5f6fa] min-h-screen overflow-y-auto">
         <h1 className="text-3xl font-bold mb-2">Welcome, {user.name} 👋</h1>
         <p className="text-gray-600 mb-1">📧 {user.email}</p>
+        {user.profilePicture && (
+  <img
+    src={user.profilePicture}
+    alt="Profile"
+    className="w-24 h-24 rounded-full border object-cover mb-4"
+  />
+)}
+
         <p className="mb-6">
           🧑‍💼 Role: <span className="font-semibold capitalize">{user.role}</span>
         </p>
