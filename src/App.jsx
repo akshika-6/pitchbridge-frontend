@@ -78,7 +78,6 @@ import { API_BASE_URL } from './config';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import Dashboard from './pages/Dashboard';
 import Startups from './pages/Startups';
 import StartupDetail from './pages/StartupDetail';
 import SubmitPitch from './pages/SubmitPitch';
@@ -96,6 +95,17 @@ import Profile from './pages/Profile';
 import FAQ from './pages/FAQ';
 import Contact from './pages/Contact';
 import Logout from './pages/Logout';
+
+import FounderDashboard from './pages/dashboard/FounderDashboard';
+import InvestorDashboard from './pages/dashboard/InvestorDashboard';
+
+
+import ExploreInvestors from './pages/ExploreInvestors';
+
+import AddStartup from './pages/AddStartup';
+
+
+
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -117,7 +127,23 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login setUser={setUser} />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/dashboard" element={user ? <Dashboard user={user} /> : <Navigate to="/login" />} />
+        <Route
+  path="/dashboard"
+  element={
+    user ? (
+      user.role === 'founder' ? (
+        <FounderDashboard />
+      ) : user.role === 'investor' ? (
+        <InvestorDashboard />
+      ) : (
+        <Navigate to="/login" /> // or any default page
+      )
+    ) : (
+      <Navigate to="/login" />
+    )
+  }
+/>
+
         <Route path="/startups" element={<Startups />} />
         <Route path="/startups/:id" element={<StartupDetail />} />
 
@@ -133,6 +159,8 @@ const App = () => {
         <Route path="/faq" element={<FAQ />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/logout" element={<Logout />} />
+        <Route path="/investors" element={<ExploreInvestors />} />
+        <Route path="/add-startup" element={<AddStartup />} />
 
         {/* 🔧 Admin Routes */}
         <Route path="/admin/users" element={user ? <AdminUsers user={user} /> : <Navigate to="/login" />} />
